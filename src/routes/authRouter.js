@@ -8,7 +8,7 @@ const validator = require("validator");
 authRouter.post("/signup", async(req,res)=>{
     try{
         validateData(req);
-        const{emailId,password, firstName, age} = req.body;
+        const{emailId,password, firstName} = req.body;
         const existingUser = await User.findOne({emailId:emailId});
         if(existingUser){
             return res.status(400).json({message:"User already exists"})
@@ -18,7 +18,6 @@ authRouter.post("/signup", async(req,res)=>{
             firstName,
             emailId,
             password:passwordHash,
-            age,
         })
         await newUser.save();
         res.status(201).json({message:"User created successfully"});
