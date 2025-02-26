@@ -8,6 +8,7 @@ const Userschema = new mongoose.Schema({
     },
     lastName:{
         type: String,
+        default: " ",
     },
     emailId:{
         type: String,
@@ -27,7 +28,7 @@ const Userschema = new mongoose.Schema({
     },
     photoUrl:{
         type: String,
-        default: "www.myprofilephoto.com"
+        default: "https://geographyandyou.com/images/user-profile.png"
     },
     Skills:{
         type: [String],
