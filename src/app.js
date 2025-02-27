@@ -7,7 +7,7 @@ const cors  = require("cors")
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: "http://localhost:5174",
+    origin: "http://localhost:5173",
     credentials:true,
 }));
 
@@ -19,7 +19,7 @@ const userRouter = require("./routes/user");
 
 connectDB().then(()=>{
     console.log("Connected to Database");
-    app.listen(8888,()=>{
+    app.listen(7777,()=>{
         console.log("Server is running on port 7777");
     })
 
