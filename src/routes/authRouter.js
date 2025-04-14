@@ -21,7 +21,10 @@ authRouter.post("/signup", async(req,res)=>{
         })
         const savedUser = await newUser.save();
         const token = await savedUser.getJWT();
-        res.cookie("token", token, {expires: new Date(Date.now() + 8*3600000)});   //can be https only
+        res.cookie("token", token, {expires: new Date(Date.now() + 8*3600000),
+            sameSite: 'None',
+            secure: true
+        });   //can be https only
         res.json({ message: "User Added successfully!", data: savedUser });        
     }catch(err){
         res.status(400).send("Error: " + err.message);
@@ -41,7 +44,8 @@ authRouter.post("/login",async(req, res)=>{
         const passwordMatch = await bcrypt.compare(password, userinDB.password);
         if(passwordMatch){
             const token = await userinDB.getJWT();
-            res.cookie("token", token,{expires: new Date(Date.now() + 8*3600000)});   //can be https only
+            res.cookie("token", token,{expires: new Date(Date.now() + 8*3600000), sameSite: 'None',
+                secure: true});   //can be https only
             res.status(200).send("Login Successful");
         }else{
             throw new Error("Invalid Password");
