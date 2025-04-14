@@ -2,14 +2,15 @@ const express = require("express");
 const app = express();
 const connectDB = require("./config/database");
 const cookieParser = require("cookie-parser");
-const cors  = require("cors")
+const cors  = require("cors");
+require("dotenv").config({ path: "../.env" });
 const http = require("http");
 
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "https://dev-frontend-final.onrender.com",
     credentials:true,
 }));
 
