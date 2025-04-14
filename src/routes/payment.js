@@ -1,5 +1,6 @@
 const express = require("express");
-require('dotenv').config();
+// require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 const { jwtAuth } = require("../middleware/validateData");
 const paymentRouter = express.Router();
 const Payment = require("../models/payment");
